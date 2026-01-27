@@ -7,9 +7,9 @@ else
     curl -s https://raw.githubusercontent.com/GAGAN028/CICD/refs/heads/main/Dockerfile | sudo bash
 fi
 echo "Create volumes for sonarqube to persist data"
-docker volume create --name sonarqube data
-docker volume create --name sonarqube logs 
-docker volume create --name sonarqube extensions
+docker volume create --name sonarqube-data
+docker volume create --name sonarqube-logs 
+docker volume create --name sonarqube-extensions
 
 docker run -d -it --name sonarqube \
     -p 9000:9000 \
