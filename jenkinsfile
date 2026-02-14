@@ -28,7 +28,8 @@ pipeline{
                 sh """
                     pwd
                     ls -lrt
-                    """
+            }
+        }        """
 
         // stage("SONAR_SCANNING") {
         //     steps {
