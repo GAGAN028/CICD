@@ -8,7 +8,7 @@ pipeline{
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
                         credentialsId: 'github',
-                        url: 'https://github.com/GAGAN028/CICD.git'
+                        url: 'https://github.com/GAGAN028/GA_demo.git'
                     ]]
                 ])
             }
