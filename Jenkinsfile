@@ -1,6 +1,6 @@
-pipeline {
+pipeline{
     agent any
-    stages {
+    stages{
         stage("CHECKOUT"){
             steps{
                 checkout([
@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-        stage("CHECKOUT"){
+        stage("BUILD"){
             steps{
                 sh """
                     pwd
