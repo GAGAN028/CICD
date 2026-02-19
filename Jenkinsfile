@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    tools {
+        maven "maven_main"
+    }
+
     stages{
         stage("CHECKOUT"){
             steps{
@@ -13,14 +17,31 @@ pipeline{
                 ])
             }
         }
-
-        stage("BUILD"){
-            steps{
+        stage("Maven Build") {
+            steps {
                 sh """
-                    pwd
-                    ls -lrt
+                    mvn clean compile
                 """
+            }
+        }
+
+        stage("SONAR_SCANNING"){
+            steps{
+                dir('./backend') {
+                    withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+                        sh """
+                           pwd
+                           ls -lrt
+                           sonar-scanner -Dsonar.host.url=http://65.0.95.102:9000
+                        """
+                    }       
+                }  
             }    
         }        
+    }
+}
+post {
+    always {
+        cleanWs()
     }
 }
