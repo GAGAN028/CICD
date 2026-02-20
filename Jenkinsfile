@@ -32,7 +32,7 @@ pipeline{
                         sh """
                            pwd
                            ls -lrt
-                           sonar-scanner -Dsonar.host.url=http://65.0.95.102:9000
+                           sonar-scanner -Dsonar.host.url=http://35.154.113.207:9000
                         """
                     }       
                 }  
