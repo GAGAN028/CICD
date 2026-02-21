@@ -30,9 +30,11 @@ pipeline{
                 dir('./backend') {
                     withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
                         sh """
-                           pwd
-                           ls -lrt
-                           sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
+                            sonar-scanner \
+                            -Dsonar.projectKey=java \
+                            -Dsonar.projectName=java \
+                            -Dsonar.host.url=http://13.233.127.65:9000 \
+                            -Dsonar.login=$SONAR_TOKEN
                         """
                     }       
                 }  
