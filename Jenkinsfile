@@ -1,10 +1,12 @@
-pipeline{
+pipeline {
     agent any
+
     tools {
         maven "maven_main"
     }
 
-    stages{
+    stages {
+
         stage("CHECKOUT"){
             steps{
                 checkout([
@@ -17,33 +19,32 @@ pipeline{
                 ])
             }
         }
+
         stage("Maven Build") {
             steps {
-                sh """
-                    mvn clean compile
-                """
+                sh "mvn clean compile"
             }
         }
 
         stage("SONAR_SCANNING"){
             steps{
-                withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
+                dir('backend') {
+                    withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
                         sh """
-                            pwd 
-                            ls -lrt
-                            sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
-                            -Dsonar.projectKey=java \
-                            -Dsonar.projectName=java \
-                            -Dsonar.login=$SONAR_TOKEN
+                           sonar-scanner \
+                           -Dsonar.projectKey=java \
+                           -Dsonar.host.url=http://13.233.127.65:9000 \
+                           -Dsonar.login=$SONAR_TOKEN
                         """
-                          
+                    }       
                 }  
             }    
         }        
     }
 
+    
     post {
-       always {
+        always {
             cleanWs()
         }
     }
