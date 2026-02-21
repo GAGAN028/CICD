@@ -32,6 +32,8 @@ pipeline{
                             pwd 
                             ls -lrt
                             sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
+                            -Dsonar.projectKey=java \
+                            -Dsonar.projectName=java \
                         """
                           
                 }  
