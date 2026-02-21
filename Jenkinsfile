@@ -27,16 +27,13 @@ pipeline{
 
         stage("SONAR_SCANNING"){
             steps{
-                dir('./backend') {
-                    withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
                         sh """
-                            sonar-scanner \
-                            -Dsonar.projectKey=java \
-                            -Dsonar.projectName=java \
-                            -Dsonar.host.url=http://13.233.127.65:9000 \
-                            
+                            pwd 
+                            ls -lrt
+                            sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
                         """
-                    }       
+                          
                 }  
             }    
         }        
