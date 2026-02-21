@@ -34,6 +34,7 @@ pipeline{
                             sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
                             -Dsonar.projectKey=java \
                             -Dsonar.projectName=java \
+                            -Dsonar.login=$SONAR_TOKEN
                         """
                           
                 }  
