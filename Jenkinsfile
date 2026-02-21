@@ -32,7 +32,7 @@ pipeline{
                         sh """
                            pwd
                            ls -lrt
-                           sonar-scanner -Dsonar.token=$SONAR_TOKEN -Dsonar.host.url=http://13.233.127.65:9000/
+                           sonar-scanner -Dsonar.host.url=http://13.233.127.65:9000/
                         """
                     }       
                 }  
