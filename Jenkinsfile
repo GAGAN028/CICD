@@ -28,7 +28,7 @@ pipeline {
 
         stage("SONAR_SCANNING"){
             steps{
-                dir('backend') {
+                dir('./backend') {
                     withCredentials([string(credentialsId: 'sonar-server', variable: 'SONAR_TOKEN')]) {
                         sh """
                            pwd
@@ -41,7 +41,17 @@ pipeline {
                     }       
                 }  
             }    
-        }        
+        } 
+
+        stage('BUILD') {
+            steps {
+            dir('./backend') {
+                sh """
+                   pwd
+                   ls -lrt
+                   sudo docker build -t backend:latest
+            }
+        }       
     }
 
     
