@@ -45,12 +45,13 @@ pipeline {
 
         stage('BUILD') {
             steps {
-            dir('./backend') {
-                sh """
-                   pwd
-                   ls -lrt
-                   sudo docker build -t backend:latest
-            }   """
+              dir('./backend') {
+                   sh """
+                       pwd
+                       ls -lrt
+                       sudo docker build -t backend:latest
+                }   """
+            }
         }       
     }
 
