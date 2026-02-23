@@ -50,7 +50,7 @@ pipeline {
                    pwd
                    ls -lrt
                    sudo docker build -t backend:latest
-            }
+            }   """
         }       
     }
 
