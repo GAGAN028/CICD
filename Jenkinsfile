@@ -40,7 +40,7 @@ pipeline {
                            ls -lrt
                            sonar-scanner \
                            -Dsonar.projectKey=java \
-                           -Dsonar.host.url=http://13.233.127.65:9000 \
+                           -Dsonar.host.url=http://13.234.240.6:9000/ \
                            -Dsonar.login=$SONAR_TOKEN
                         """
                     }       
