@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         BACKEND_IMAGE = "thegagan028/backend"
-        DOCKERFILE_BACKEND = ./Dockerfile"
+        DOCKERFILE_BACKEND = "./Dockerfile"
     }
 
     stages {
@@ -52,13 +52,21 @@ pipeline {
             steps {
                 script {
                     dir('./backend') {
-                        def backendImage = docker.build("${BACKEND_IMAGE}:${env.   BUILD_NUMBER}","-f ${env.DOCKERFILE_BACKEND})
-                        docker.withRegistry('https://registry.hub.docker.com','docker_hub') {backendImage.push()}
+                        def backendImage = docker.build(
+                            "${BACKEND_IMAGE}:${env.BUILD_NUMBER}",
+                            "-f ${env.DOCKERFILE_BACKEND} ."
+                        )
+
+                        docker.withRegistry('https://registry.hub.docker.com','docker_hub') {
+                            backendImage.push()
+                        }   
                     }
                 }   
             }
-        }       
+        }   
     }
+     
+    
 
     
     post {
